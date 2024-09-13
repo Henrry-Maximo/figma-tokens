@@ -8,7 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Faz o fetch completo para que o GitHub Actions possa criar branches
 
       - name: Create input JSON
         id: create-json
@@ -35,6 +38,6 @@ jobs:
           commit-message: "style: Update design tokens"
           title: ${{ github.event.client_payload.commitMessage || 'Update design tokens' }}
           body: "Design tokens have been updated via Figma and need to be reviewed."
+          branch: create-pull-request/patch
         env:
-          GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
-          BRANCH_NAME: 'main'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
