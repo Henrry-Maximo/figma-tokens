@@ -51,5 +51,4 @@ jobs:
           reviewers: Henrry-Maximo
           team-reviewers: |
             developers
-          milestone: 1
           draft: false
