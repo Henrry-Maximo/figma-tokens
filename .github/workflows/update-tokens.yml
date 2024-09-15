@@ -5,13 +5,11 @@ on:
     types: update-tokens
 
 jobs:
-  build:
+  createPullRequest:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Faz o fetch completo para que o GitHub Actions possa criar branches
 
       - name: Create input JSON
         id: create-json
@@ -33,11 +31,25 @@ jobs:
         run: npm run build
 
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.PAT }}
           commit-message: "style: Update design tokens"
-          title: ${{ github.event.client_payload.commitMessage || 'Update design tokens' }}
-          body: "Design tokens have been updated via Figma and need to be reviewed."
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+          signoff: false
           branch: create-pull-request/patch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          delete-branch: false
+          title: "Update design tokens"
+          body: |
+            Design tokens have been updated via Figma and need to be reviewed.
+          labels: |
+            design
+            automated-pr
+          assignees: Henrry-Maximo
+          reviewers: Henrry-Maximo
+          team-reviewers: |
+            developers
+          milestone: 1
+          draft: false
