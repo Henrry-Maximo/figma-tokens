@@ -49,6 +49,4 @@ jobs:
             automated-pr
           assignees: Henrry-Maximo
           reviewers: Henrry-Maximo
-          team-reviewers: |
-            developers
           draft: false
