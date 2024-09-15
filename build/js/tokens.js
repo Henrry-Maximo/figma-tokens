@@ -5,6 +5,7 @@
 module.exports = {
   "ColorBlack": "#000000",
   "ColorWhite": "#ffffff",
+  "ColorSky400": "#38bdf8",
   "ColorSky600": "#0284c7",
   "ColorSky900": "#0c4a6e",
   "ColorZinc800": "#27272a",
