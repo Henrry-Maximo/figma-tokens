@@ -48,5 +48,4 @@ jobs:
             design
             automated-pr
           assignees: Henrry-Maximo
-          reviewers: Henrry-Maximo
           draft: false
